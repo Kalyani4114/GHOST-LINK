@@ -3,99 +3,287 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GHOST-LINK | Covert Data Transmission</title>
+    <title>GHOST-LINK | Tactical Data Suite</title>
     <style>
+        :root {
+            --primary: #00ff00; /* Hacker Green */
+            --bg: #050a14;      /* Deep Black/Navy */
+            --card-bg: #0b1221;
+            --text: #e0e0e0;
+            --accent: #ff3333;  /* Alert Red for variety */
+        }
+
+        * { box-sizing: border-box; }
+
         body {
-            background-color: #050a14;
-            color: #00ff00;
+            background-color: var(--bg);
+            color: var(--primary);
             font-family: 'Consolas', 'Courier New', monospace;
             margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-        header {
-            margin-top: 50px;
-            border-bottom: 2px solid #00ff00;
-            padding-bottom: 20px;
-            width: 80%;
-        }
-        h1 { font-size: 3.5rem; margin: 0; letter-spacing: 5px; text-shadow: 0 0 10px #00ff00; }
-        h3 { color: #aaaaaa; margin-top: 10px; font-weight: normal; }
-        
-        .container { max-width: 900px; padding: 40px; }
-        
-        .hero-img {
-            width: 100%;
-            border: 2px solid #333;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
-            margin: 30px 0;
-            border-radius: 5px;
+            line-height: 1.6;
         }
 
-        .btn {
-            background-color: #00ff00;
+        /* --- NAVIGATION BAR --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 5%;
+            border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+            background: rgba(5, 10, 20, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 2px; }
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--primary); }
+
+        /* --- HERO SECTION (First View) --- */
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px; /* Top padding reduced */
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+            letter-spacing: 3px;
+        }
+        
+        .tagline {
+            color: #ccc;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        /* --- THE MAGIC BUTTON (Visible without scroll) --- */
+        .cta-container { margin-bottom: 40px; }
+        
+        .btn-main {
+            background-color: var(--primary);
             color: #000;
-            padding: 15px 40px;
-            font-size: 1.5rem;
-            font-weight: bold;
+            padding: 18px 50px;
+            font-size: 1.3rem;
+            font-weight: 900;
             text-decoration: none;
             border: none;
+            border-radius: 2px;
             cursor: pointer;
-            box-shadow: 0 0 15px #00ff00;
-            transition: 0.3s;
+            box-shadow: 0 0 20px var(--primary);
+            transition: all 0.3s ease;
             display: inline-block;
-            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        .btn:hover { background-color: #fff; box-shadow: 0 0 30px #fff; }
+        
+        .btn-main:hover {
+            background-color: #fff;
+            box-shadow: 0 0 40px #fff;
+            transform: scale(1.05);
+        }
+        
+        .version-text {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: #666;
+        }
 
-        .features {
+        /* --- SCREENSHOT --- */
+        .hero-img {
+            width: 80%;
+            max-width: 1000px;
+            border: 1px solid #333;
+            box-shadow: 0 0 40px rgba(0, 255, 0, 0.1);
+            border-radius: 5px;
+            margin-bottom: 60px;
+        }
+
+        /* --- TECH STACK STRIP --- */
+        .tech-strip {
+            background: var(--card-bg);
+            padding: 20px 0;
+            text-align: center;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+            margin-bottom: 60px;
+        }
+        .tech-badges span {
+            border: 1px solid var(--primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin: 5px 10px;
+            display: inline-block;
+            font-size: 0.85rem;
+            color: var(--primary);
+        }
+
+        /* --- DETAILED FEATURES GRID --- */
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-left: 3px solid var(--primary);
+            transition: 0.3s;
+        }
+        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        .feature-card h3 { color: #fff; margin-top: 0; }
+        .feature-card p { color: #aaa; font-size: 0.95rem; margin-bottom: 0; }
+
+        /* --- HOW IT WORKS (Workflow) --- */
+        .workflow {
+            max-width: 1000px;
+            margin: 0 auto 80px;
+            padding: 20px;
+        }
+        .step {
             display: flex;
-            justify-content: space-around;
-            margin-top: 50px;
-            text-align: left;
+            align-items: center;
+            margin-bottom: 20px;
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 5px;
         }
-        .feature-box { width: 30%; border: 1px solid #333; padding: 15px; background: #0b1120; }
-        .feature-title { color: #ff3333; font-weight: bold; margin-bottom: 10px; }
+        .step-num {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-right: 20px;
+            min-width: 50px;
+        }
 
-        footer { margin-top: 50px; color: #555; font-size: 0.8rem; padding-bottom: 20px; }
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid #333;
+            color: #555;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .hero-img { width: 95%; }
+            .btn-main { width: 100%; }
+            .nav-links { display: none; } /* Simple hide for mobile for now */
+        }
     </style>
 </head>
 <body>
 
-    <header>
+    <nav>
+        <div class="logo">https://github.com/Kalyani4114/GHOST-LINK/releases/tag/v1.0.0</div>
+        <div class="nav-links">
+            <a href="#features">Architecture</a>
+            <a href="#workflow">Workflow</a>
+            <a href="YOUR_RELEASE_LINK_HERE">Download</a>
+        </div>
+    </nav>
+
+    <section class="hero">
         <h1>GHOST-LINK</h1>
-        <h3>LAYERED INTELLIGENCE NETWORK KIT</h3>
-    </header>
+        <p class="tagline">
+            Advanced Steganography Suite Engineered with Chaos Theory & AES-GCM Cryptography.
+            <br>
+            <span style="color: #888; font-size: 0.9rem;">Turn any image into a secure tactical data channel.</span>
+        </p>
 
-    <div class="container">
-        <p>A TACTICAL STEGANOGRAPHY SUITE POWERED BY CHAOS THEORY & AES-GCM.</p>
+        <div class="cta-container">
+            <a href="https://github.com/Kalyani4114/GHOST-LINK/releases/tag/v1.0.0" class="btn-main">DOWNLOAD ELITE EDITION v1.0</a>
+            <span class="version-text">Windows 10/11 Compatible | Standalone .EXE</span>
+        </div>
 
-        <img src="demo.png" alt="GHOST-LINK Interface" class="hero-img">
+        <img src="demo.png" alt="Ghost Link Interface" class="hero-img">
+    </section>
 
-        <br>
+    <div class="tech-strip">
+        <p style="color: #fff; margin-bottom: 15px;">ENGINEERED USING CORE TECHNOLOGIES:</p>
+        <div class="tech-badges">
+            <span>PYTHON 3.10</span>
+            <span>NUMPY (LINEAR ALGEBRA)</span>
+            <span>AES-GCM (HAZMAT)</span>
+            <span>CHAOS MAPS</span>
+            <span>TKINTER GUI</span>
+        </div>
+    </div>
 
-        <a href="https://github.com/Kalyani4114/GHOST-LINK/releases/tag/v1.0.0" class="btn">DOWNLOAD FOR WINDOWS v1.0</a>
+    <div style="text-align: center;"><div class="section-title" id="features">SYSTEM ARCHITECTURE</div></div>
+    
+    <div class="grid-container">
+        <div class="feature-card">
+            <h3>🔒 Military-Grade Encryption</h3>
+            <p>Unlike basic tools, GHOST-LINK applies <b>AES-GCM Authenticated Encryption</b> to the payload before insertion. Even if the image is analyzed, the data remains mathematically locked.</p>
+        </div>
+        <div class="feature-card">
+            <h3>🌪️ Chaos Theory Engine</h3>
+            <p>Utilizes a Seed-Based Chaos Map to randomize pixel selection. Data is scattered non-linearly across the image, defeating standard sequential steganalysis.</p>
+        </div>
+        <div class="feature-card">
+            <h3>🔬 Forensic Visualization</h3>
+            <p>Includes a dedicated <b>"Zoom Inspector"</b> and <b>"Entropy Heatmap"</b>. Verify LSB injections in real-time and visualize the chaos pattern.</p>
+        </div>
+        <div class="feature-card">
+            <h3>💾 Zero-Trace Execution</h3>
+            <p>Built as a portable executable. No installation required. Runs directly from memory to minimize digital footprint on the host machine.</p>
+        </div>
+    </div>
 
-        <div class="features">
-            <div class="feature-box">
-                <div class="feature-title">>> MILITARY GRADE</div>
-                AES-GCM Authenticated Encryption for secure payload handling.
+    <div style="text-align: center;"><div class="section-title" id="workflow">OPERATIONAL WORKFLOW</div></div>
+    
+    <div class="workflow">
+        <div class="step">
+            <div class="step-num">01</div>
+            <div>
+                <h4 style="margin:0; color:#fff;">SELECT CARRIER</h4>
+                <p style="margin:5px 0 0; color:#aaa;">Load any standard PNG/JPG image to act as the cover vessel.</p>
             </div>
-            <div class="feature-box">
-                <div class="feature-title">>> CHAOS ENGINE</div>
-                Seed-based non-linear pixel shuffling to prevent pattern analysis.
+        </div>
+        <div class="step">
+            <div class="step-num">02</div>
+            <div>
+                <h4 style="margin:0; color:#fff;">ENCRYPT & INJECT</h4>
+                <p style="margin:5px 0 0; color:#aaa;">Input secret data + Password. The Chaos Engine calculates the scatter path and embeds the encrypted bits.</p>
             </div>
-            <div class="feature-box">
-                <div class="feature-title">>> FORENSIC UI</div>
-                Real-time LSB Zoom Inspector and Heatmap visualization.
+        </div>
+        <div class="step">
+            <div class="step-num">03</div>
+            <div>
+                <h4 style="margin:0; color:#fff;">TRANSMIT</h4>
+                <p style="margin:5px 0 0; color:#aaa;">Save the output image. It looks identical to the original but carries the hidden payload.</p>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>SYSTEM STATUS: ONLINE // DEVELOPED FOR RESEARCH & SECURITY ANALYSIS</p>
+        <p>GHOST-LINK PROJECT // DEVELOPED FOR EDUCATIONAL & RESEARCH PURPOSES</p>
+        <p>Secure Communication Protocol // 2025</p>
     </footer>
 
 </body>
